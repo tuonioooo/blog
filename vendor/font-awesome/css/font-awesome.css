@@ -634,6 +634,10 @@
 .fa-github:before {
   content: "\f09b";
 }
+/*
+加入码云图标gitee
+*/
+.fa-gitee:before {   content: "\f260"; }
 .fa-unlock:before {
   content: "\f09c";
 }
