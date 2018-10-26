@@ -3,17 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>你好，Hexo | 代东泽</title>
+    <title>高并发环境下如何防止订单重复提交 | 代东泽</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="keywords" content="组织,天下一地">
+    <meta name="description" content="订单重复问题已经是老生常谈的问题了，我们熟悉的淘宝购物流程，购物车–&amp;gt;生成订单–》提交订单–》订单确认–》支付订单–》备货–》发货，这里可能会有一些问题，例如，有人恶意或者无意的重复提交订单，从而导致数据库保存的订单数量与实际不符，重复提交订单导致用户体验不佳，甚至更为严重的是，用户重复支付了同一个订单。所以，涉及到订单，应该首先想清楚如何设计才能保证系统不会出现这些问题 如何防止订单重复提">
 <meta property="og:type" content="article">
-<meta property="og:title" content="你好，Hexo">
-<meta property="og:url" content="https://pentakillandquadrakill.gitee.io/blog/2018/10/15/你好，Hexo/index.html">
+<meta property="og:title" content="高并发环境下如何防止订单重复提交">
+<meta property="og:url" content="https://pentakillandquadrakill.gitee.io/blog/2018/10/26/高并发环境下如何防止订单重复提交/index.html">
 <meta property="og:site_name" content="代东泽">
+<meta property="og:description" content="订单重复问题已经是老生常谈的问题了，我们熟悉的淘宝购物流程，购物车–&amp;gt;生成订单–》提交订单–》订单确认–》支付订单–》备货–》发货，这里可能会有一些问题，例如，有人恶意或者无意的重复提交订单，从而导致数据库保存的订单数量与实际不符，重复提交订单导致用户体验不佳，甚至更为严重的是，用户重复支付了同一个订单。所以，涉及到订单，应该首先想清楚如何设计才能保证系统不会出现这些问题 如何防止订单重复提">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-26T02:48:39.631Z">
+<meta property="og:image" content="https:////upload-images.jianshu.io/upload_images/1815061-b31a739c96e256b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/626/format/webp">
+<meta property="og:updated_time" content="2018-10-26T02:56:30.068Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你好，Hexo">
+<meta name="twitter:title" content="高并发环境下如何防止订单重复提交">
+<meta name="twitter:description" content="订单重复问题已经是老生常谈的问题了，我们熟悉的淘宝购物流程，购物车–&amp;gt;生成订单–》提交订单–》订单确认–》支付订单–》备货–》发货，这里可能会有一些问题，例如，有人恶意或者无意的重复提交订单，从而导致数据库保存的订单数量与实际不符，重复提交订单导致用户体验不佳，甚至更为严重的是，用户重复支付了同一个订单。所以，涉及到订单，应该首先想清楚如何设计才能保证系统不会出现这些问题 如何防止订单重复提">
+<meta name="twitter:image" content="https:////upload-images.jianshu.io/upload_images/1815061-b31a739c96e256b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/626/format/webp">
     
 
     
@@ -196,7 +200,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-你好，Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-高并发环境下如何防止订单重复提交" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -204,7 +208,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            你好，Hexo
+            高并发环境下如何防止订单重复提交
         </h1>
     
 
@@ -216,28 +220,14 @@
 						
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/blog/2018/10/15/你好，Hexo/">
-            <time datetime="2018-10-15T02:21:12.000Z" itemprop="datePublished">2018-10-15</time>
+        <a href="/blog/2018/10/26/高并发环境下如何防止订单重复提交/">
+            <time datetime="2018-10-26T02:54:44.000Z" itemprop="datePublished">2018-10-26</time>
         </a>
     </div>
 
 
                         
-	<div class="article-category" style="text-transform: none;">
-    	<i class="fa fa-user"></i>
-        赵丽颖巴巴爸爸
-    </div>
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/blog/categories/Diary/">Diary</a>
-    </div>
-
                         
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blog/tags/天下一地/">天下一地</a>, <a class="tag-link" href="/blog/tags/组织/">组织</a>
-    </div>
-
                     </div>
                 
             </header>
@@ -246,16 +236,26 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            
+            <p>订单重复问题已经是老生常谈的问题了，我们熟悉的淘宝购物流程，购物车–&gt;生成订单–》提交订单–》订单确认–》支付订单–》备货–》发货，这里可能会有一些问题，例如，有人恶意或者无意的重复提交订单，从而导致数据库保存的订单数量与实际不符，重复提交订单导致用户体验不佳，甚至更为严重的是，用户重复支付了同一个订单。所以，涉及到订单，应该首先想清楚如何设计才能保证系统不会出现这些问题</p>
+<h2 id="如何防止订单重复提交"><a href="#如何防止订单重复提交" class="headerlink" title="如何防止订单重复提交"></a>如何防止订单重复提交</h2><p>首先说两个我们购物时经常有过的体验或者说购物网站的网页提醒</p>
+<ul>
+<li>你提交的动作过快，请稍后尝试</li>
+<li>你的订单已经超时，请刷新页面后重新提交<br> 看到这些提示，说明该购物网站做了订单提交的限制，一方面是防止有人恶意无限制提交订单，所以限制了一定时间内最大可操作次数，另一方面是为了保证订单无重复提交。那么这是怎么做到的呢？<br> <strong>第一个</strong>应该比较简单，限制某个时间内的最大操作次数只需要有一个计数器就可以，计数器可以用redis实现，设置一个带有有效时间的值作为计数器，如果值不存在则自动创建，超过某一个值就认为操作次数用完即可以实现。<br> <strong>第二个</strong>可以使用token机制，token即令牌，学过spring security的相信对这个词不会陌生。我们可以使用类似spring security的机制在页面上生成一个token，当提交订单时，根据该token的有效时间和允许的使用次数来判断订单是否允许提交，从而规避重复提交的问题。当然，有人会问，在高并发的情况下，如果是判断token有效之前有很多同一个用户的提交线程过来（用户正常使用一般不会出现这种情况，一般是压力测试工具导致的），那么还是会重复提交，所以，这里需要用到锁机制，访问同一个用户的token同一时间只能有一个线程，token使用之后失效了就会被清掉，之后的线程就找不到该token，从而认为订单不能提交。</li>
+</ul>
+<h2 id="订单确认支付"><a href="#订单确认支付" class="headerlink" title="订单确认支付"></a>订单确认支付</h2><p>如支付宝和微信等，支付宝和微信本身是怎么限制订单只能支付一次的呢？订单怎么保证只会被支付一次呢？这个问题相对来说就简单很多了，同一订单的状态更新的SQL只需要带上条件，利用的是数据库的行锁。当然，如果是分布式系统，这里涉及到的问题会更多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update table item set item.status=:newstatus where item.id = :id and item.status = oldstatus.</span><br></pre></td></tr></table></figure>
+<h2 id="对比案例"><a href="#对比案例" class="headerlink" title="对比案例"></a>对比案例</h2><ul>
+<li><p>美团GTIS</p>
+<p> 主要看GTIS的流程图以及想想其交易ID的作用，交易之前，后台会返回一个交易ID给前端，前端在点击交易按钮时需将该交易ID和其他交易信息同时返回给后台进行处理，通过全局的交易ID实现“该次交易的”幂等性</p>
+</li>
+</ul>
+<p>  <img src="https:////upload-images.jianshu.io/upload_images/1815061-b31a739c96e256b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/626/format/webp" alt="img"></p>
+<p>  ​                                        美团GTIS.png</p>
+
         
         </div>
         <footer class="article-footer">
             
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blog/tags/天下一地/">天下一地</a>, <a class="tag-link" href="/blog/tags/组织/">组织</a>
-    </div>
-
 			<!-- -->
 			<div class="share-container">
 
@@ -263,7 +263,7 @@
 
 </div>
 
-    <a data-url="https://pentakillandquadrakill.gitee.io/blog/2018/10/15/你好，Hexo/" data-id="cjnpfe2p1000atous5nwn4uov" class="article-share-link"><i class="fa fa-share"></i>共有</a>
+    <a data-url="https://pentakillandquadrakill.gitee.io/blog/2018/10/26/高并发环境下如何防止订单重复提交/" data-id="cjnpfe2p4000btousboruuk0k" class="article-share-link"><i class="fa fa-share"></i>共有</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -339,19 +339,10 @@
         
 <nav id="article-nav">
     
-        <a href="/blog/2018/10/15/20181015，你好/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">新しい記事</strong>
-            <div class="article-nav-title">
-                
-                    20181015，你好
-                
-            </div>
-        </a>
     
-    
-        <a href="/blog/2018/10/15/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/blog/2018/10/16/author测试/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">古い記事</strong>
-            <div class="article-nav-title">Hello World</div>
+            <div class="article-nav-title">author测试</div>
         </a>
     
 </nav>
